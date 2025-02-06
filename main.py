@@ -17,16 +17,22 @@ def main():
 
     # instantiate player object
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     while True:
-          for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                      return
-          screen.fill("black")
-          updatable.update(dt)
-          for sprite in drawable:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+            
+        updatable.update(dt)
+
+        screen.fill("black")
+
+        for sprite in drawable:
             sprite.draw(screen)
-          pygame.display.flip()
-          dt = fps_clock.tick(60) / 1000      
+
+        pygame.display.flip()
+        
+        dt = fps_clock.tick(60) / 1000      
     #print("Starting asteroids!")
     #print(f"Screen width: {SCREEN_WIDTH}")
     #print(f"Screen height: {SCREEN_HEIGHT}")
