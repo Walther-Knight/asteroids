@@ -14,7 +14,8 @@ def main():
           for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                       return
-          screen.fill((0, 0, 0))
+          screen.fill("black")
+          player_ship.update(dt)
           player_ship.draw(screen)
           pygame.display.flip()
           dt = fps_clock.tick(60) / 1000      

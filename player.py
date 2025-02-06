@@ -18,4 +18,15 @@ class Player(circleshape.CircleShape):
 
 # override draw method from circleshape
     def draw(self, screen):
-        return pygame.draw.polygon(screen, (255, 255, 255), self.triangle(), 2)
+        return pygame.draw.polygon(screen, "white", self.triangle(), 2)
+    
+    def rotate(self, dt):
+        self.rotation += PLAYER_TURN_SPEED * dt
+
+    def update(self, dt):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_a]:
+            return self.rotate(-dt)
+        if keys[pygame.K_d]:
+            return self.rotate(dt)
