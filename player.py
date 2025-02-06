@@ -1,11 +1,18 @@
 from constants import *
-import circleshape
+from circleshape import CircleShape
 import pygame
 
-class Player(circleshape.CircleShape):
+class Player(CircleShape):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
+        
         self.rotation = 0
+
+# container support code
+        if hasattr(self, "containers"):
+            super().__init__(self.containers)
+        else:
+            super().__init__()
 
 # in the player class
     def triangle(self):
@@ -18,7 +25,7 @@ class Player(circleshape.CircleShape):
 
 # override draw method from circleshape
     def draw(self, screen):
-        return pygame.draw.polygon(screen, "white", self.triangle(), 2)
+        pygame.draw.polygon(screen, "white", self.triangle(), 2)
     
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt

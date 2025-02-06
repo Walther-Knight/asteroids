@@ -1,24 +1,35 @@
 import pygame
 from constants import *
-import player
+from player import Player
 
 
 
 def main():
+    # call and configure pygame and set up fps
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    fps_clock = pygame.time.Clock()
+    clock = pygame.time.Clock()
     dt = 0
-    player_ship = player.Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    # define pygame containers
+    #updatable = pygame.sprite.Group()
+    #drawable = pygame.sprite.Group()
+    #Player.containers = (updatable, drawable)
+
+    # define player_ship object
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+
+    # game loop
     while True:
           for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                       return
           screen.fill("black")
-          player_ship.update(dt)
-          player_ship.draw(screen)
+          player.update(dt)
+          player.draw(screen)
           pygame.display.flip()
-          dt = fps_clock.tick(60) / 1000      
+          dt = clock.tick(60) / 1000      
     #print("Starting asteroids!")
     #print(f"Screen width: {SCREEN_WIDTH}")
     #print(f"Screen height: {SCREEN_HEIGHT}")
